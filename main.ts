@@ -1,7 +1,10 @@
 import inquirer from "inquirer";
 
-let myBalance = 90000; //dollar
+let myBalance = 40000; //dollar
 let myPin = 1234;
+
+console.log("Welcome to the ATM machine");
+
 let pinAnswer = await inquirer.prompt([
   {
     name: "pin",
@@ -10,9 +13,9 @@ let pinAnswer = await inquirer.prompt([
   },
 ]);
 
-if (pinAnswer.pin === myPin) 
-  {
+if (pinAnswer.pin === myPin) {
   console.log("correct pin code!!!");
+ 
   let operationanswer = await inquirer.prompt([
     {
       name: "operation",
@@ -25,19 +28,22 @@ if (pinAnswer.pin === myPin)
     let amountAnswer = await inquirer.prompt([
       {
         name: "amount",
-        message: "enter your amount",
-        type: "number",
+        message: "enter your amount ",
+        type: "list",
+        choices: [5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000 , 50000]
       },
     ]);
+    if (amountAnswer.amount > myBalance) {
+      console.log("your balance is insufficient");
+    } 
+    else {
+      myBalance -= amountAnswer.amount;
+      console.log(amountAnswer.amount +" "+ "withdraw successfully");
+      console.log(`your new balance is: ${myBalance} `);
+    }
+  } else {
+    operationanswer.operation === "check balance";
 
-    myBalance -= amountAnswer.amount;
-    console.log("your remaining balance is:" + myBalance)
-
+    console.log("your balance is : " + myBalance);
   }
-
-  
-} 
-
-
-
-else console.log("please enter correct pin code");
+} else console.log("please enter your correct pin code!");

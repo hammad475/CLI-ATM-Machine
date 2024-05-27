@@ -23,9 +23,9 @@ if (pinAnswer.pin === myPin) {
         let amountAnswer = await inquirer.prompt([
             {
                 name: "amount",
-                message: "enter your amount ",
+                message: "select your amount ",
                 type: "list",
-                choices: [5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000]
+                choices: [5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000,]
             },
         ]);
         if (amountAnswer.amount > myBalance) {
